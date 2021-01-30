@@ -5,13 +5,16 @@
         :editor="editor"
         v-model="editorData"
         :config="editorConfig"
+        @ready="attachInspector"
     >
     </ckeditor>
 </template>
 
 <script>
 import CKEditor from '@ckeditor/ckeditor5-vue';
+import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 import BalloonEditor from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
+
     import EssentialsPlugin from '@ckeditor/ckeditor5-essentials/src/essentials';
     import BoldPlugin from '@ckeditor/ckeditor5-basic-styles/src/bold';
     import ItalicPlugin from '@ckeditor/ckeditor5-basic-styles/src/italic';
@@ -45,6 +48,11 @@ export default {
                     ]
                 }
             },
+        }
+    },
+    methods: {
+        attachInspector: editor => {
+            CKEditorInspector.attach( editor )
         }
     }
 }
